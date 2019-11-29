@@ -17,8 +17,8 @@ public class ParkTest {
     @Before
     public void before() {
         park = new Park("Isla Nublar", 10000);
-        dinosaur = new Dinosaur("Bloody Big Lizard", "Beans", 100, "Frankie", 3, paddock);
-        paddock = new Paddock("Pen 2", 10, 3, "Carnivore",false);
+        dinosaur = new Dinosaur("Bloody Big Lizard", "Beans", 100, "Frankie", 3, paddock, park);
+        paddock = new Paddock("Pen 2", 10, 3, "Carnivore",false, park);
     }
 
     @Test
