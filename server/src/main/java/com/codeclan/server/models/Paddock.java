@@ -110,4 +110,8 @@ public class Paddock {
         this.park = park;
     }
 
+    public void addDinosaur(Dinosaur dinosaur) {
+        this.dinosaurs.add(dinosaur);
+    }
+
 }
