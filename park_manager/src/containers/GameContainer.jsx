@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 
 export class GameContainer extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+             
+        }
+    }
+    
     render() {
         return (
             <div>
