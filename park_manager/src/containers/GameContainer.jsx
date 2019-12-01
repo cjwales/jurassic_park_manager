@@ -4,6 +4,7 @@ import Request from '../helpers/Request'
 import PaddockList from '../components/PaddockList'
 import PaddockDetail from '../components/PaddockDetail'
 
+
 export class GameContainer extends Component {
     constructor(props) {
         super(props)
@@ -48,7 +49,7 @@ export class GameContainer extends Component {
         this.setState(state => {
             const paddocks = state.paddocks.map(item => item.dinosaurs.hunger + 1);
             return {
-                paddocks,
+                paddocks
             };
         });
     };
