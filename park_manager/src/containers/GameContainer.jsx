@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Request from '../helpers/Request'
-import PaddockList from '../components/PaddockList'
-import PaddockDetail from '../components/PaddockDetail'
+import GamePaddockList from '../components/GamePaddockList'
+import GamePaddockDetail from '../components/GamePaddockDetail'
 import update from 'immutability-helper'
 
 
@@ -69,12 +69,12 @@ export class GameContainer extends Component {
                     <React.Fragment>
                         <Switch>
                             <Route exact path="/manager" render={(props) => {
-                                return <PaddockList paddocks={this.state.paddocks} />
+                                return <GamePaddockList paddocks={this.state.paddocks} />
                             }} />
                             <Route exact path="/manager/:id" render={(props) => {
                                 const id = props.match.params.id;
                                 const paddock = this.findPaddockById(id);
-                                return <PaddockDetail paddock={paddock} />
+                                return <GamePaddockDetail paddock={paddock} />
                             }} />
                         </Switch>
                     </React.Fragment>

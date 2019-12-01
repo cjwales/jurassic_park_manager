@@ -1,7 +1,7 @@
 import React from 'react'
-import Paddock from './Paddock'
+import GamePaddock from './GamePaddock'
 
-const PaddockList = (props) => {
+const GamePaddockList = (props) => {
     if(!props.length === 0) {
         return (<p>Loading...</p>)
     }
@@ -10,7 +10,7 @@ const PaddockList = (props) => {
         return (
             <li key={index} className="component-item">
                 <div className="component">
-                    <Paddock paddock={paddock} />
+                    <GamePaddock paddock={paddock} />
                 </div>
                 <button>Feed Dinosaurs</button>
             </li>
@@ -26,4 +26,4 @@ const PaddockList = (props) => {
     )
 }
 
-export default PaddockList
+export default GamePaddockList

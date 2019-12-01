@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
-const Paddock = (props) => {
+const GamePaddock = (props) => {
 
     if (!props.paddock) {
         return "Loading..."
     }
 
-    const url = '/paddocks/' + props.paddock.id
+    const url = '/manager/' + props.paddock.id
 
     return (
         <Fragment>
@@ -19,4 +19,4 @@ const Paddock = (props) => {
     )
 }
 
-export default Paddock
+export default GamePaddock
