@@ -44,9 +44,14 @@ export class GameContainer extends Component {
         })
     }
 
-    increaseDinosaurHunger() {
-       
-    }
+    increaseDinosaurHunger = () => {
+        this.setState(state => {
+            const paddocks = state.paddocks.map(item => item.dinosaurs.hunger + 1);
+            return {
+                paddocks,
+            };
+        });
+    };
 
     nextDay() {
         this.incrementDayCounter()
