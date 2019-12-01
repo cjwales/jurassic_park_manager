@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Request from '../helpers/Request'
 import PaddockList from '../components/PaddockList'
 import PaddockDetail from '../components/PaddockDetail'
+import update from 'immutability-helper'
 
 
 export class GameContainer extends Component {
