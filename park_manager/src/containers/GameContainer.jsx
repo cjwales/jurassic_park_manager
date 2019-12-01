@@ -45,9 +45,7 @@ export class GameContainer extends Component {
     }
 
     increaseDinosaurHunger() {
-        this.setState(prevState => {
-            return { dinosaur: prevState.dinosaur.hunger - 2 }
-        })
+       
     }
 
     nextDay() {
