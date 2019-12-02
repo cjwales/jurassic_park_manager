@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Request from '../helpers/Request'
-import GamePaddockList from '../components/GamePaddockList'
-import GamePaddockDetail from '../components/GamePaddockDetail'
+import Request from '../../helpers/Request'
+import GamePaddockList from '../../components/game/GamePaddockList'
+import GamePaddockDetail from '../../components/game/GamePaddockDetail'
 import update from 'immutability-helper'
 
 
