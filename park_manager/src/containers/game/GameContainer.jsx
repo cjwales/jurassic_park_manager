@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Request from '../../helpers/Request'
 import GamePaddockList from '../../components/game/GamePaddockList'
 import GamePaddockDetail from '../../components/game/GamePaddockDetail'
-import update from 'immutability-helper'
+import GameDinosaur from '../../components/game/GameDinosaur'
 
 
 export class GameContainer extends Component {
@@ -13,12 +13,13 @@ export class GameContainer extends Component {
             paddocks: [],
             dinosaurs: [],
             dayCounter: 1,
-            remainingFeed: 5
+            remainingFeed: 5,
+            dinoElements: null
         }
         this.findPaddockById = this.findPaddockById.bind(this)
         this.incrementDayCounter = this.incrementDayCounter.bind(this)
-        this.increaseDinosaurHunger = this.increaseDinosaurHunger.bind(this)
         this.nextDay = this.nextDay.bind(this)
+        this.incrementDinoHunger = this.incrementDinoHunger.bind(this)
 
     }
 
@@ -30,7 +31,8 @@ export class GameContainer extends Component {
             })
         request.get('/api/dinosaurs')
             .then((dinoData) => {
-                this.setState({ dinosaurs: dinoData._embedded.dinosaurs })
+                // this.setState({ dinosaurs: dinoData._embedded.dinosaurs })
+                this.prepareDinosaurs(dinoData)
             })
     }
 
@@ -46,18 +48,29 @@ export class GameContainer extends Component {
         })
     }
 
-    increaseDinosaurHunger = () => {
-        this.setState(state => {
-            const paddocks = state.paddocks.map(item => item.dinosaurs.hunger + 1);
-            return {
-                paddocks
-            };
-        });
-    };
+    prepareDinosaurs(dinoData) {
+        let dinoComponents = [];
+        let dino = {};
+        for (dino of dinoData._embedded.dinosaurs) {
+            dinoComponents.push(<GameDinosaur name={dino.name} species={dino.species} hunger={dino.hunger} />);
+        }
+        this.setState({
+            dinoElements: dinoComponents
+        })
+    }
 
     nextDay() {
         this.incrementDayCounter()
-        this.increaseDinosaurHunger()
+        this.incrementDinoHunger()
+    }
+
+    incrementDinoHunger() {
+        let hungryDinos = [];
+        let dino = {};
+        for (dino of this.state.dinoElements) {
+            dino.hunger += 1;
+        }
+        this.setState({ dinoElements: hungryDinos })
     }
 
 
@@ -81,6 +94,9 @@ export class GameContainer extends Component {
                 </Router>
                 <h3>Day: {this.state.dayCounter}</h3>
                 <button onClick={this.nextDay}>Next Day</button>
+
+                <p>THIS IS TEMP:</p>
+                        {this.state.dinoElements}
             </div>
         )
     }
