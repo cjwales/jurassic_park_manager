@@ -7,6 +7,9 @@ import DinosaurFormContainer from './dinosaurs/DinosaurFormContainer';
 import PaddockList from '../components/paddocks/PaddockList';
 import PaddockDetails from '../components/paddocks/PaddockDetails';
 import PaddockFormContainer from './paddocks/PaddockFormContainer';
+import ParkList from '../components/parks/ParkList';
+import ParkDetails from '../components/parks/ParkDetails';
+import ParkFormContainer from './parks/ParkFormContainer';
 import Request from '../helpers/request';
 
 
@@ -16,7 +19,8 @@ class MainContainer extends Component {
         super(props);
         this.state = {
             dinosaurs: [],
-            paddocks: []
+            paddocks: [],
+            parks: []
         }
         this.findDinosaurById = this.findDinosaurById.bind(this);
         this.findPaddockById = this.findPaddockById.bind(this);
@@ -29,28 +33,30 @@ class MainContainer extends Component {
 
         const promise1 = request.get('/api/dinosaurs');
         const promise2 = request.get('/api/paddocks');
-        const promises = [promise1, promise2]
+        const promise3 = request.get('/api/parks');
+        const promises = [promise1, promise2, promise3]
 
         Promise.all(promises).then((data) => {
             this.setState({
                 dinosaurs: data[0]._embedded.dinosaurs,
-                paddocks: data[1]._embedded.paddocks
+                paddocks: data[1]._embedded.paddocks,
+                parks: data[2]._embedded.parks
             })
         })
     }
 
     findDinosaurById(id) {
-        const Dinosaur = this.state.dinosaurs.find((Dinosaur) => {
-            return Dinosaur.id === parseInt(id)
+        const dinosaur = this.state.dinosaurs.find((dinosaur) => {
+            return dinosaur.id === parseInt(id)
         })
-        return Dinosaur;
+        return dinosaur;
     }
 
     findPaddockById(id) {
-        const Paddock = this.state.paddocks.find((Paddock) => {
-            return Paddock.id === parseInt(id)
+        const paddock = this.state.paddocks.find((paddock) => {
+            return paddock.id === parseInt(id)
         })
-        return Paddock;
+        return paddock;
     }
 
     handleDelete(id) {
@@ -85,24 +91,38 @@ class MainContainer extends Component {
                                 return <PaddockList paddocks={this.state.paddocks} />
                             }} />
 
+                            <Route exact path="/parks" render={(props) => {
+                                return <ParkList parks={this.state.parks} />
+                            }} />
+
                             <Route exact path="/dinosaurs/new" render={(props) => {
-                                return <DinosaurFormContainer paddocks={this.state.paddocks} />
+                                return <DinosaurFormContainer parks={this.state.parks} paddocks={this.state.paddocks} />
                             }} />
 
                             <Route exact path="/paddocks/new" render={(props) => {
-                                return <PaddockFormContainer dinosaurs={this.state.dinosaurs} />
+                                return <PaddockFormContainer dinosaurs={this.state.dinosaurs} parks={this.state.parks} />
+                            }} />
+
+                            <Route exact path="/parks/new" render={(props) => {
+                                return <ParkFormContainer paddocks={this.state.paddocks} />
                             }} />
 
                             <Route exact path="/dinosaurs/:id" render={(props) => {
                                 const id = props.match.params.id;
-                                const Dinosaur = this.findDinosaurById(id);
-                                return <DinosaurDetails Dinosaur={Dinosaur} onDelete={this.handleDelete} />
+                                const dinosaur = this.findDinosaurById(id);
+                                return <DinosaurDetails dinosaur={dinosaur} onDelete={this.handleDelete} />
                             }} />
 
                             <Route exact path="/paddocks/:id" render={(props) => {
                                 const id = props.match.params.id;
-                                const Paddock = this.findPaddockById(id);
-                                return <PaddockDetails Paddock={Paddock}/>
+                                const paddock = this.findPaddockById(id);
+                                return <PaddockDetails paddock={paddock}/>
+                            }} />
+
+                            <Route exact path="/parks/:id" render={(props) => {
+                                const id = props.match.params.id;
+                                const park = this.findParkById(id);
+                                return <ParkDetails park={park}/>
                             }} />
 
 

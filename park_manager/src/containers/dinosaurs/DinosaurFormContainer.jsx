@@ -8,17 +8,17 @@ class DinosaurFormContainer extends Component {
         this.handleDinosaurPost = this.handleDinosaurPost.bind(this);
     }
 
-    handleDinosaurPost(Dinosaur){
-        console.log("Dinosaur", Dinosaur);
+    handleDinosaurPost(dinosaur){
+        console.log("dinosaur", dinosaur);
         
         const request = new Request();
-        request.post('/api/dinosaurs', Dinosaur).then(() => {
+        request.post('/api/dinosaurs', dinosaur).then(() => {
             window.location = '/dinosaurs'
         })
     }
 
     render(){
-        return <DinosaurForm paddocks={this.props.paddocks} handleDinosaurPost={this.handleDinosaurPost}/>
+        return <DinosaurForm paddocks={this.props.paddocks} parks={this.props.parks} handleDinosaurPost={this.handleDinosaurPost}/>
     }
 }
 

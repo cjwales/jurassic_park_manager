@@ -8,17 +8,17 @@ class PaddockFormContainer extends Component {
         this.handlePaddockPost = this.handlePaddockPost.bind(this);
     }
 
-    handlePaddockPost(Paddock){
-        console.log("Paddock", Paddock);
+    handlePaddockPost(paddock){
+        console.log("paddock", paddock);
         
         const request = new Request();
-        request.post('/api/paddocks', Paddock).then(() => {
+        request.post('/api/paddocks', paddock).then(() => {
             window.location = '/paddocks'
         })
     }
 
     render(){
-        return <PaddockForm dinosaurs={this.props.dinosaurs} handlePaddockPost={this.handlePaddockPost}/>
+        return <PaddockForm dinosaurs={this.props.dinosaurs} parks={this.props.parks} handlePaddockPost={this.handlePaddockPost}/>
     }
 }
 

@@ -14,7 +14,11 @@ const PaddockDetails = (props) => {
     return (
         <div className="component">
             <Paddock paddock={props.paddock} />
-        
+            <p>Name: {props.paddock.name}</p>
+            <p>Type: {props.paddock.type}</p>
+            <p>Rampage?: {props.paddock.isRampaging}</p>
+            <p>Capacity: {props.paddock.capacity}</p>
+            <p>Security Level: {props.paddock.securityLevel}</p>
             <button onClick={handleDelete}>Delete: {props.paddock.name} ?</button>
         </div>
     )
