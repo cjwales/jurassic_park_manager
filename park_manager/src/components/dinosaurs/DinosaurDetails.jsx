@@ -85,15 +85,17 @@ class DinosaurDetails extends Component {
 
                 <br></br>
                 <br></br>
-                <button onClick={this.handleDelete}>Delete {this.props.dinosaur.name} ?</button>
-                <button onClick={this.feedDinosaur}>Feed {this.props.dinosaur.name} ?</button>
+                <div className="buttons">
+                <button onClick={this.feedDinosaur}>Feed {this.props.dinosaur.name}</button>
+                <button onClick={this.handleDelete}>Delete {this.props.dinosaur.name}</button>
+                </div>
                 <br></br>
                 <br></br>
                 <form onSubmit={this.updatePaddock}>
                     <select name="paddock">
                         {options}
                     </select>
-                    <button type="submit">Update paddock?</button>
+                    <button type="submit">Update Paddock</button>
                 </form>
 
 

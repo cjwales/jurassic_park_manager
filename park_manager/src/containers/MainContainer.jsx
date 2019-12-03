@@ -85,7 +85,6 @@ class MainContainer extends Component {
                     <React.Fragment>
                         <NavBar />
                         <Switch>
-                        <div className="content-div">
 
                             <Route exact path="/dinosaurs" render={(props) => {
                                 return <DinosaurList dinosaurs={this.state.dinosaurs} />
@@ -112,7 +111,7 @@ class MainContainer extends Component {
                             }} />
 
                             <Route exact path="/dinosaurs/:id" render={(props) => {
-                                
+
                                 const id = parseInt(props.match.params.id);
                                 console.log("Main conatiner id", id);
                                 const dinosaur = this.findDinosaurById(id);
@@ -132,7 +131,6 @@ class MainContainer extends Component {
                                 const park = this.findParkById(id);
                                 return <ParkDetails park={park}/>
                             }} />
-                            </div>
 
 
                         </Switch>
