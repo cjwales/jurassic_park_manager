@@ -92,10 +92,10 @@ class DinosaurDetails extends Component {
                 <br></br>
                 <br></br>
                 <form onSubmit={this.updatePaddock}>
+                <button type="submit">Update Paddock</button>
                     <select name="paddock">
                         {options}
                     </select>
-                    <button type="submit">Update Paddock</button>
                 </form>
 
 
