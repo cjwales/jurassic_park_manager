@@ -14,23 +14,11 @@ const NavBar = (props) => {
     </li>
 
     <li className="navLink">
-    <Link to="/parks">Parks</Link>
-    </li>
-
-    <li className="navLink">
     <Link to="/dinosaurs/new">Add Dinosaur</Link>
     </li>
 
     <li className="navLink">
-    <Link to="/dinosaurs/:id">Find Dinosaur</Link>
-    </li>
-
-    <li className="navLink">
     <Link to="/paddocks/new">Add Paddock</Link>
-    </li>
-
-    <li className="navLink">
-    <Link to="/paddocks/:id">Find Paddock</Link>
     </li>
 
     </ul>

@@ -24,8 +24,9 @@ class MainContainer extends Component {
         }
         this.findDinosaurById = this.findDinosaurById.bind(this);
         this.findPaddockById = this.findPaddockById.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
+        this.handleDelete = this.handleDeleteDinosaur.bind(this);
         this.handleDeletePaddock = this.handleDeletePaddock.bind(this);
+
     }
 
     componentDidMount() {
@@ -46,9 +47,11 @@ class MainContainer extends Component {
     }
 
     findDinosaurById(id) {
+        console.log("Main state", this.state);
         const dinosaur = this.state.dinosaurs.find((dinosaur) => {
             return dinosaur.id === parseInt(id)
         })
+        console.log("findbyid result", dinosaur);
         return dinosaur;
     }
 
@@ -59,7 +62,7 @@ class MainContainer extends Component {
         return paddock;
     }
 
-    handleDelete(id) {
+    handleDeleteDinosaur(id) {
         const request = new Request()
         const url = '/api/dinosaurs/' + id;
         request.delete(url).then(() => {
@@ -108,15 +111,19 @@ class MainContainer extends Component {
                             }} />
 
                             <Route exact path="/dinosaurs/:id" render={(props) => {
-                                const id = props.match.params.id;
+                                
+                                const id = parseInt(props.match.params.id);
+                                console.log("Main conatiner id", id);
                                 const dinosaur = this.findDinosaurById(id);
-                                return <DinosaurDetails dinosaur={dinosaur} onDelete={this.handleDelete} />
+                                console.log("Main container dinosaur", dinosaur)
+
+                                return <DinosaurDetails dinosaur={dinosaur} onDelete={this.handleDeleteDinosaur} paddocks={this.state.paddocks} />
                             }} />
 
                             <Route exact path="/paddocks/:id" render={(props) => {
                                 const id = props.match.params.id;
                                 const paddock = this.findPaddockById(id);
-                                return <PaddockDetails paddock={paddock}/>
+                                return <PaddockDetails paddock={paddock} onDelete={this.handleDeletePaddock} />
                             }} />
 
                             <Route exact path="/parks/:id" render={(props) => {
