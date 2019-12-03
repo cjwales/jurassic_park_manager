@@ -46,7 +46,9 @@ const PaddockForm = (props) => {
                 <select name="park">
                     {optionsPark}
                 </select>
+                <div className="paddock-form-save-button">
                 <button type="submit">Save</button>
+                </div>
             </form>
         </div>
     )
