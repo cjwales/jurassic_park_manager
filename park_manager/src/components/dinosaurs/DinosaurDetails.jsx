@@ -75,8 +75,8 @@ class DinosaurDetails extends Component {
             return <option key={index} value={paddock.name}>{paddock.name}</option>
         })
         return (
-            <div className="component" >
-                <Dinosaur dinosaur={this.props.dinosaur} />
+            <div className="detail-component" >
+                <h3><Dinosaur dinosaur={this.props.dinosaur} /></h3>
                 <p>Species: {this.state.species}</p>
                 <p>Diet: {this.state.diet}</p>
                 <p>Hunger Level: {this.state.hunger}</p>
