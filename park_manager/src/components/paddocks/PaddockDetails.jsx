@@ -7,7 +7,7 @@ const PaddockDetails = (props) => {
         return "Loading..."
     }
 
-    const handleDelete = () => {
+    const handleDeletePaddock = () => {
         props.onDelete(props.paddock.id)
     }
 
@@ -17,7 +17,8 @@ const PaddockDetails = (props) => {
             <p>Type: {props.paddock.type}</p>
             <p>Capacity: {props.paddock.capacity}</p>
             <p>Security Level: {props.paddock.securityLevel}</p>
-            <button onClick={handleDelete}>Delete {props.paddock.name}</button>
+
+            <button onClick={handleDeletePaddock}>Delete: {props.paddock.name} ?</button>
         </div>
     )
 }

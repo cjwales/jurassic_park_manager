@@ -1,26 +1,105 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Dinosaur from './Dinosaur.jsx';
 
-const DinosaurDetails = (props) => {
+class DinosaurDetails extends Component {
 
-    if (!props.dinosaur) {
-        return "Loading..."
+    constructor(props) {
+        super(props)
+        this.state = {
+            species: null,
+            diet: null,
+            hunger: null,
+            name: null,
+            threatLevel: null,
+            paddock: [],
+            park: []
+        }
+
+        this.handleDelete = this.handleDelete.bind(this);
+        this.updatePaddock = this.updatePaddock.bind(this);
+        this.feedDinosaur = this.feedDinosaur.bind(this);
+        // this.findPaddockById = this.findPaddockById.bind(this);
     }
 
-    const handleDelete = () => {
-        props.onDelete(props.dinosaur.id)
+    componentDidMount() {
+        console.log(this.props);
+
+        this.setState({
+            species: this.props.dinosaur.species,
+            diet: this.props.dinosaur.diet,
+            hunger: this.props.dinosaur.hunger,
+            name: this.props.dinosaur.name,
+            threatLevel: this.props.dinosaur.threatLevel,
+            paddock: this.props.dinosaur.paddock.name,
+            park: this.props.dinosaur.park
+        });
     }
 
-    return (
-        <div className="detail-component">
-            <h3><Dinosaur dinosaur={props.dinosaur} /></h3>
-            <p>Species: {props.dinosaur.species}</p>
-            <p>Diet: {props.dinosaur.diet}</p>
-            <p>Hunger Level: {props.dinosaur.hunger}</p>
-            <p>Threat Level: {props.dinosaur.threatLevel}</p>
-            <button onClick={handleDelete}>Delete {props.dinosaur.name}</button>
-        </div>
-    )
+
+    handleDelete = () => {
+        this.props.onDelete(this.props.dinosaur.id)
+    }
+
+    // findPaddockById(id) {
+    //     const paddock = this.state.paddocks.find((paddock) => {
+    //         return paddock.id === parseInt(id)
+    //     })
+    //     return paddock;
+    // }
+
+    updatePaddock = (event) => {
+        event.preventDefault();
+        console.log("event", event.target[0].value);
+        // debugger;
+        this.setState({
+            paddock: event.target[0].value
+        });
+    }
+
+
+    feedDinosaur(){
+        this.setState(prevState => {
+            return{
+                hunger: prevState.hunger - 5
+            }
+        })
+    }
+
+
+    render() {
+        if (!this.props.dinosaur){
+            return null;
+        }
+        const options = this.props.paddocks.map((paddock, index) => {
+
+            return <option key={index} value={paddock.name}>{paddock.name}</option>
+        })
+        return (
+            <div className="component" >
+                <Dinosaur dinosaur={this.props.dinosaur} />
+                <p>Species: {this.state.species}</p>
+                <p>Diet: {this.state.diet}</p>
+                <p>Hunger Level: {this.state.hunger}</p>
+                <p>Threat Level: {this.state.threatLevel}</p>
+                <p>Paddock: {this.state.paddock}</p>
+
+                <br></br>
+                <br></br>
+                <button onClick={this.handleDelete}>Delete {this.props.dinosaur.name} ?</button>
+                <button onClick={this.feedDinosaur}>Feed {this.props.dinosaur.name} ?</button>
+                <br></br>
+                <br></br>
+                <form onSubmit={this.updatePaddock}>
+                    <select name="paddock">
+                        {options}
+                    </select>
+                    <button type="submit">Update paddock?</button>
+                </form>
+
+
+            </div>
+        )
+    }
 }
 
 export default DinosaurDetails;

@@ -17,6 +17,10 @@ class DinosaurFormContainer extends Component {
         })
     }
 
+    feedDinosaur(dinosaur){
+        dinosaur.hunger -= 10;
+    }
+
     render(){
         return <DinosaurForm paddocks={this.props.paddocks} parks={this.props.parks} handleDinosaurPost={this.handleDinosaurPost}/>
     }
