@@ -57,17 +57,19 @@ class DinosaurDetails extends Component {
     }
 
 
-    feedDinosaur(){
-        this.setState(prevState => {
-            return{
-                hunger: prevState.hunger - 5
-            }
-        })
+    feedDinosaur() {
+        if (this.state.hunger >= 1) {
+            this.setState(prevState => {
+                return {
+                    hunger: prevState.hunger - 5
+                }
+            })
+        }
     }
 
 
     render() {
-        if (!this.props.dinosaur){
+        if (!this.props.dinosaur) {
             return null;
         }
         const options = this.props.paddocks.map((paddock, index) => {
@@ -86,16 +88,16 @@ class DinosaurDetails extends Component {
                 <br></br>
                 <br></br>
                 <div className="buttons">
-                <button onClick={this.feedDinosaur}>Feed {this.props.dinosaur.name}</button>
-                <button onClick={this.handleDelete}>Delete {this.props.dinosaur.name}</button>
+                    <button onClick={this.feedDinosaur}>Feed {this.props.dinosaur.name}</button>
+                    <button onClick={this.handleDelete}>Delete {this.props.dinosaur.name}</button>
                 </div>
                 <br></br>
                 <br></br>
                 <form onSubmit={this.updatePaddock}>
-                <button type="submit">Update Paddock</button>
                     <select name="paddock">
                         {options}
                     </select>
+                    <button className="update-button" type="submit">Update Paddock</button>
                 </form>
 
 

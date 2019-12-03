@@ -17,8 +17,9 @@ const PaddockDetails = (props) => {
             <p>Type: {props.paddock.type}</p>
             <p>Capacity: {props.paddock.capacity}</p>
             <p>Security Level: {props.paddock.securityLevel}</p>
-
-            <button onClick={handleDeletePaddock}>Delete {props.paddock.name}</button>
+            <div className="delete-paddock-button">
+                <button onClick={handleDeletePaddock}>Delete {props.paddock.name}</button>
+            </div>
         </div>
     )
 }

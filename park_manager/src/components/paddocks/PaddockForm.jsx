@@ -32,11 +32,11 @@ const PaddockForm = (props) => {
     }
 
     return (
-        <div>
+        <div className="paddock-form-container">
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Name" name="name" />
                 <input type="text" placeholder="Type" name="type" />
-                <input type="Boolean" placeholder="Rampage?" name="isRampaging" />
+                <input type="Boolean" placeholder="Rampage" name="isRampaging" />
                 <input type="number" placeholder="Capacity" name="capacity" />
                 <input type="number" placeholder="Security Level" name="securityLevel" />
 
