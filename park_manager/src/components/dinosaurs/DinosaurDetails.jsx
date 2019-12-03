@@ -18,6 +18,7 @@ class DinosaurDetails extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.updatePaddock = this.updatePaddock.bind(this);
         this.feedDinosaur = this.feedDinosaur.bind(this);
+        // this.findPaddockById = this.findPaddockById.bind(this);
     }
 
     componentDidMount() {
@@ -29,7 +30,7 @@ class DinosaurDetails extends Component {
             hunger: this.props.dinosaur.hunger,
             name: this.props.dinosaur.name,
             threatLevel: this.props.dinosaur.threatLevel,
-            paddock: this.props.dinosaur.paddock,
+            paddock: this.props.dinosaur.paddock.name,
             park: this.props.dinosaur.park
         });
     }
@@ -39,25 +40,27 @@ class DinosaurDetails extends Component {
         this.props.onDelete(this.props.dinosaur.id)
     }
 
+    // findPaddockById(id) {
+    //     const paddock = this.state.paddocks.find((paddock) => {
+    //         return paddock.id === parseInt(id)
+    //     })
+    //     return paddock;
+    // }
+
     updatePaddock = (event) => {
         event.preventDefault();
-        const dinosaur = {
-            "species": event.target.species.value,
-            "diet": event.target.diet.value,
-            "hunger": event.target.hunger.value,
-            "name": event.target.name.value,
-            "threatLevel": event.target.threatLevel.value,
-            "paddock": event.target.paddock.value,
-            "park": event.target.park.value
-
-        }
-        this.props.handleDinosaurPost(dinosaur);
+        console.log("event", event.target[0].value);
+        // debugger;
+        this.setState({
+            paddock: event.target[0].value
+        });
     }
+        
 
     feedDinosaur(){
         this.setState(prevState => {
             return{
-                hunger: prevState.hunger -5
+                hunger: prevState.hunger - 5
             }
         })
     }
@@ -69,7 +72,7 @@ class DinosaurDetails extends Component {
         }
         const options = this.props.paddocks.map((paddock, index) => {
 
-            return <option key={index} value={paddock._links.self.href}>{paddock.name}</option>
+            return <option key={index} value={paddock.name}>{paddock.name}</option>
         })
         return (
             <div className="component" >
@@ -78,15 +81,20 @@ class DinosaurDetails extends Component {
                 <p>Diet: {this.state.diet}</p>
                 <p>Hunger Level: {this.state.hunger}</p>
                 <p>Threat Level: {this.state.threatLevel}</p>
-                <p>Paddock: {this.state.paddock.name}</p>
-                <select name="paddock">
-                    {options}
-                </select>
-                <button onClick={this.updatePaddock}>Update paddock?</button>
+                <p>Paddock: {this.state.paddock}</p>
+
                 <br></br>
                 <br></br>
                 <button onClick={this.handleDelete}>Delete {this.props.dinosaur.name} ?</button>
                 <button onClick={this.feedDinosaur}>Feed {this.props.dinosaur.name} ?</button>
+                <br></br>
+                <br></br>
+                <form onSubmit={this.updatePaddock}>
+                    <select name="paddock">
+                        {options}
+                    </select>
+                    <button type="submit">Update paddock?</button>
+                </form>
 
 
             </div>
