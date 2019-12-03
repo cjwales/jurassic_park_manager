@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -19,4 +19,129 @@
 
 .App-link {
   color: #09d3ac;
+} */
+
+/* .component {
+  margin: 20px;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid black;
+
+  font-size: 18px;
+  font-family: sans-serif;
+  color: #2b434a;
+  text-decoration: none;
+
+  background-color: white;
+} */
+
+.detail-component {
+  margin: auto;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid black;
+
+  font-size: 18px;
+  font-family: sans-serif;
+  color: #2b434a;
+  text-decoration: none;
+  background-color: rgba(192, 192, 192, 0.9);
+
+
+}
+
+.name {
+  color: #2b434a;
+  text-decoration: none;
+}
+
+li.component-item {
+  display: inline;
+}
+
+.navLink {
+  display: inline;
+  background-color: #5f8196;
+  margin: 20px;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid black;
+  font-size: 28px;
+  font-family: sans-serif;
+  color: white;
+}
+
+.navBar {
+  display: flex;
+}
+
+a,a:visited,a:hover,a:active {
+  color: inherit;
+}
+
+body {
+  height: 125vh;
+  font-family: sans-serif;
+  background-color: white;
+  background-image: url("../src/background.jpg");
+  background-repeat: no-repeat;
+}
+
+a {text-decoration: none;}
+
+/* .content-div {
+  background-color: rgba(192, 192, 192, 0.7);
+  max-width: auto;
+} */
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.component-list {
+  margin: auto;
+  padding: 10px;
+  width: 50%;
+  border: 1px solid black;
+
+  font-size: 24px;
+  font-family: sans-serif;
+  color: #2b434a;
+  text-decoration: none;
+  background-color: rgba(192, 192, 192, 0.7);
+
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.component-item {
+  border: 1px solid black;
+  padding: 15px;
+  margin: 10px;
+  background-color: rgba(192, 192, 192, 0.7);
+  flex: 1 0 21%;
+}
+
+.form-component {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input {
+  width: 200px;
+  padding: 12px 20px;
+}
+
+select {
+  padding: 16px 20px;
+  border: none;
+  height: 20px;
 }

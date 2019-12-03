@@ -77,11 +77,12 @@ class MainContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main-container-div">
                 <Router>
                     <React.Fragment>
                         <NavBar />
                         <Switch>
+                        <div className="content-div">
 
                             <Route exact path="/dinosaurs" render={(props) => {
                                 return <DinosaurList dinosaurs={this.state.dinosaurs} />
@@ -124,6 +125,7 @@ class MainContainer extends Component {
                                 const park = this.findParkById(id);
                                 return <ParkDetails park={park}/>
                             }} />
+                            </div>
 
 
                         </Switch>
