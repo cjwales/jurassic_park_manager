@@ -31,11 +31,20 @@ const DinosaurForm = (props) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Species" name="species" />
-                <input type="text" placeholder="Diet" name="diet" />
-                <input type="number" placeholder="Hunger" name="hunger" />
+                {/* <input type="text" placeholder="Species" name="species" /> */}
+                <select name="species">
+                    <option value="tyrannosaurus rex">Tyrannosaurus Rex</option>
+                    <option value="diplodocus">Diplodocus</option>
+                    <option value="stegosaurus">Stegosaurus</option>
+                </select>
+                {/* <input type="text" placeholder="Diet" name="diet" /> */}
+                <select name="diet">
+                    <option value="carnivore">Carnivore</option>
+                    <option value="herbivore">Herbivore</option>
+                </select>
+                <input type="number" placeholder="Hunger" name="hunger" min="0" max="100"/>
                 <input type="text" placeholder="Name" name="name" />
-                <input type="number" placeholder="Threat Level" name="threatLevel" />
+                <input type="number" placeholder="Threat Level" name="threatLevel" min="1" max="3"/>
                 <select name="paddock">
                     {options}
                 </select>

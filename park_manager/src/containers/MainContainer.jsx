@@ -26,6 +26,7 @@ class MainContainer extends Component {
         this.findPaddockById = this.findPaddockById.bind(this);
         this.handleDelete = this.handleDeleteDinosaur.bind(this);
         this.handleDeletePaddock = this.handleDeletePaddock.bind(this);
+        this.handleUpdateDinosaur = this.handleUpdateDinosaur.bind(this);
 
     }
 
@@ -47,11 +48,9 @@ class MainContainer extends Component {
     }
 
     findDinosaurById(id) {
-        console.log("Main state", this.state);
         const dinosaur = this.state.dinosaurs.find((dinosaur) => {
             return dinosaur.id === parseInt(id)
         })
-        console.log("findbyid result", dinosaur);
         return dinosaur;
     }
 
@@ -76,6 +75,14 @@ class MainContainer extends Component {
         request.delete(url).then(() => {
             window.location = '/paddocks';
         });
+    }
+
+    handleUpdateDinosaur(id, dinosaur){
+        const request = new Request();
+        request.patch('/api/dinosaurs/' + id, dinosaur)
+        .then(() => {
+            window.location = '/dinosaurs/' + id;
+        })
     }
 
     render() {
@@ -113,11 +120,8 @@ class MainContainer extends Component {
                             <Route exact path="/dinosaurs/:id" render={(props) => {
                                 
                                 const id = parseInt(props.match.params.id);
-                                console.log("Main conatiner id", id);
                                 const dinosaur = this.findDinosaurById(id);
-                                console.log("Main container dinosaur", dinosaur)
-
-                                return <DinosaurDetails dinosaur={dinosaur} onDelete={this.handleDeleteDinosaur} paddocks={this.state.paddocks} />
+                                return <DinosaurDetails dinosaur={dinosaur} onDelete={this.handleDeleteDinosaur} paddocks={this.state.paddocks} handleUpdateDinosaur={this.handleUpdateDinosaur}/>
                             }} />
 
                             <Route exact path="/paddocks/:id" render={(props) => {

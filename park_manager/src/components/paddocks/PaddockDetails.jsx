@@ -1,26 +1,66 @@
 import React from 'react';
-import Paddock from './Paddock.jsx';
+
 
 const PaddockDetails = (props) => {
 
     if (!props.paddock) {
-        return "Loading..."
+        return "PADDOCKDETAILS"
     }
+
+    const options = props.dinosaurs.map((dinosaur, index) => {
+        
+        return <option key={index} value={dinosaur._links.self.href}>{dinosaur.name}</option>
+    })
+
+    const optionsPark = props.parks.map((park, index) => {
+        
+        return <option key={index} value={park._links.self.href}>{park.name}</option>
+    })
 
     const handleDeletePaddock = () => {
         props.onDelete(props.paddock.id)
     }
+    const handleSubmit = (event) => {
+        
+        event.preventDefault();
+        const paddock = {
+            "name": event.target.name.value,
+            "type": event.target.type.value,
+            "isRampaging": event.target.isRampaging.value,
+            "capacity": event.target.capacity.value,
+            "securityLevel": event.target.securityLevel.value,
+            "dinosaur": event.target.dinosaur.value,
+            "park": event.target.park.value
+        }
+        props.handlePaddockPost(paddock);
+    }
 
     return (
-        <div className="component">
-            <Paddock paddock={props.paddock} />
-            <p>Name: {props.paddock.name}</p>
-            <p>Type: {props.paddock.type}</p>
-            <p>Rampage?: {props.paddock.isRampaging}</p>
-            <p>Capacity: {props.paddock.capacity}</p>
-            <p>Security Level: {props.paddock.securityLevel}</p>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Name" name="name" />
+                {/* <input type="text" placeholder="Type" name="type" /> */}
+                <select name="type">
+                    <option value="carnivore">Carnivore</option>
+                    <option value="herbivore">Herbivore</option>
+                </select>
+                {/* <input type="Boolean" placeholder="Rampage?" name="isRampaging" /> */}
+                <select name="isRampaging">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+                <input type="number" placeholder="Capacity" name="capacity" min="0" max="20" />
+                <input type="number" placeholder="Security Level" name="securityLevel" min="1" max="3" />
 
-            <button onClick={handleDeletePaddock}>Delete: {props.paddock.name} ?</button>
+                <select name="dinosaur">
+                    {options}
+                </select>
+                <select name="park">
+                    {optionsPark}
+                </select>
+                <button onClick={handleDeletePaddock}>Delete: {props.paddock.name} ?</button>
+                <button type="submit">Save</button>
+            </form>
         </div>
     )
 }
