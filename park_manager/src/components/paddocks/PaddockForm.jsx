@@ -32,7 +32,7 @@ const PaddockForm = (props) => {
     }
 
     return (
-        <div>
+        <div className="paddock-form-container">
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Name" name="name" />
                 {/* <input type="text" placeholder="Type" name="type" /> */}
@@ -54,7 +54,9 @@ const PaddockForm = (props) => {
                 <select name="park">
                     {optionsPark}
                 </select>
+                <div className="paddock-form-save-button">
                 <button type="submit">Save</button>
+                </div>
             </form>
         </div>
     )

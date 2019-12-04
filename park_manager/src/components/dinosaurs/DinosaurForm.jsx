@@ -3,17 +3,17 @@ import React from 'react';
 const DinosaurForm = (props) => {
 
     const options = props.paddocks.map((paddock, index) => {
-        
+
         return <option key={index} value={paddock._links.self.href}>{paddock.name}</option>
     })
 
     const optionsPark = props.parks.map((park, index) => {
-        
+
         return <option key={index} value={park._links.self.href}>{park.name}</option>
     })
 
     const handleSubmit = (event) => {
-        
+
         event.preventDefault();
         const dinosaur = {
             "species": event.target.species.value,
@@ -23,13 +23,13 @@ const DinosaurForm = (props) => {
             "threatLevel": event.target.threatLevel.value,
             "paddock": event.target.paddock.value,
             "park": event.target.park.value
-            
+
         }
         props.handleDinosaurPost(dinosaur);
     }
 
     return (
-        <div>
+        <div className = "form-component">
             <form onSubmit={handleSubmit}>
                 {/* <input type="text" placeholder="Species" name="species" /> */}
                 <select name="species">
@@ -52,7 +52,7 @@ const DinosaurForm = (props) => {
                     {optionsPark}
                 </select>
                 <button type="submit">Save</button>
-                
+
             </form>
         </div>
     )

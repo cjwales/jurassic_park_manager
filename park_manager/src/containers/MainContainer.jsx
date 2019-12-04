@@ -87,7 +87,7 @@ class MainContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main-container-div">
                 <Router>
                     <React.Fragment>
                         <NavBar />
@@ -118,7 +118,7 @@ class MainContainer extends Component {
                             }} />
 
                             <Route exact path="/dinosaurs/:id" render={(props) => {
-                                
+
                                 const id = parseInt(props.match.params.id);
                                 const dinosaur = this.findDinosaurById(id);
                                 return <DinosaurDetails dinosaur={dinosaur} onDelete={this.handleDeleteDinosaur} paddocks={this.state.paddocks} handleUpdateDinosaur={this.handleUpdateDinosaur}/>

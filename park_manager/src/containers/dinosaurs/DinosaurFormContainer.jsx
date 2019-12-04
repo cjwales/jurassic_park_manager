@@ -10,7 +10,7 @@ class DinosaurFormContainer extends Component {
 
     handleDinosaurPost(dinosaur){
         console.log("dinosaur", dinosaur);
-        
+
         const request = new Request();
         request.post('/api/dinosaurs', dinosaur).then(() => {
             window.location = '/dinosaurs'
