@@ -97,7 +97,7 @@ class DinosaurDetails extends Component {
                     <select name="paddock">
                         {options}
                     </select>
-                    <button className="update-button" type="submit">Update Paddock</button>
+                    <button className="update-button" type="submit">Transfer Dinosaur</button>
                 </form>
 
 
