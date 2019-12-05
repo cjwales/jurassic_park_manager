@@ -2,10 +2,6 @@ import React from 'react';
 
 const PaddockForm = (props) => {
 
-    if (!props.dinosaurs) {
-        return "PADDOCKFORM"
-    }
-
     const options = props.dinosaurs.map((dinosaur, index) => {
         
         return <option key={index} value={dinosaur._links.self.href}>{dinosaur.name}</option>
@@ -32,7 +28,7 @@ const PaddockForm = (props) => {
     }
 
     return (
-        <div className="paddock-form-container">
+        <div className="form-component">
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Name" name="name" />
                 {/* <input type="text" placeholder="Type" name="type" /> */}
@@ -42,8 +38,8 @@ const PaddockForm = (props) => {
                 </select>
                 {/* <input type="Boolean" placeholder="Rampage?" name="isRampaging" /> */}
                 <select name="isRampaging">
-                    <option value="true">True</option>
-                    <option value="false">False</option>
+                    <option value="true">Rampaging</option>
+                    <option value="false">Not Rampaging</option>
                 </select>
                 <input type="number" placeholder="Capacity" name="capacity" min="0" max="20"/>
                 <input type="number" placeholder="Security Level" name="securityLevel" min="1" max="3"/>
@@ -54,9 +50,8 @@ const PaddockForm = (props) => {
                 <select name="park">
                     {optionsPark}
                 </select>
-                <div className="paddock-form-save-button">
                 <button type="submit">Save</button>
-                </div>
+                
             </form>
         </div>
     )

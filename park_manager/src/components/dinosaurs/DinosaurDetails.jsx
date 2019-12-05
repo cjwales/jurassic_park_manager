@@ -26,12 +26,17 @@ const DinosaurDetails = (props) => {
 
 
     const feedDinosaur = () => {
-        props.hunger -= 5;
-    }
+        let newHungerLevel = props.dinosaur.hunger - 5;
+        if (props.dinosaur.hunger > 4){
+        const dinosaur = {
+            hunger: newHungerLevel
+        };
+        props.handleUpdateDinosaur(props.dinosaur.id, dinosaur)
+    }}
 
 
     return (
-        <div>
+        <div className="detail-component">
             <Dinosaur dinosaur={props.dinosaur} />
             <p>Species: {props.dinosaur.species}</p>
             <p>Diet: {props.dinosaur.diet}</p>
@@ -41,15 +46,17 @@ const DinosaurDetails = (props) => {
 
             <br></br>
             <br></br>
-            <button onClick={handleDelete}>Delete {props.dinosaur.name} ?</button>
-            <button onClick={feedDinosaur}>Feed {props.dinosaur.name} ?</button>
+            <div className="buttons">
+            <button onClick={handleDelete}>Delete {props.dinosaur.name}</button>
+            <button onClick={feedDinosaur}>Feed {props.dinosaur.name}</button>
+            </div>
             <br></br>
             <br></br>
             <form onSubmit={handleUpdate}>
                 <select name="paddock" id="paddock-select">
                     {options}
                 </select>
-                <button type="submit">Update paddock?</button>
+                <button className="update-button" type="submit">Transfer Dinosaur</button>
             </form>
 
 
@@ -59,3 +66,4 @@ const DinosaurDetails = (props) => {
 
 
 export default DinosaurDetails;
+

@@ -27,6 +27,7 @@ class MainContainer extends Component {
         this.handleDelete = this.handleDeleteDinosaur.bind(this);
         this.handleDeletePaddock = this.handleDeletePaddock.bind(this);
         this.handleUpdateDinosaur = this.handleUpdateDinosaur.bind(this);
+        this.handleUpdatePaddock = this.handleUpdatePaddock.bind(this);
 
     }
 
@@ -85,6 +86,14 @@ class MainContainer extends Component {
         })
     }
 
+    handleUpdatePaddock(id, paddock){
+        const request = new Request();
+        request.patch('/api/paddocks/' + id, paddock)
+        .then(() => {
+            window.location = '/paddocks/' + id;
+        })
+    }
+
     render() {
         return (
             <div className="main-container-div">
@@ -125,9 +134,9 @@ class MainContainer extends Component {
                             }} />
 
                             <Route exact path="/paddocks/:id" render={(props) => {
-                                const id = props.match.params.id;
+                                const id = parseInt(props.match.params.id);
                                 const paddock = this.findPaddockById(id);
-                                return <PaddockDetails paddock={paddock} onDelete={this.handleDeletePaddock} />
+                                return <PaddockDetails paddock={paddock} onDelete={this.handleDeletePaddock} dinosaurs={this.state.dinosaurs} parks={this.state.parks} handleUpdatePaddock={this.handleUpdatePaddock}/>
                             }} />
 
                             <Route exact path="/parks/:id" render={(props) => {
